@@ -305,6 +305,8 @@ class SQS:
         if hasattr(self, 'atoms'):
             state_dict['atoms'] = self.atoms.todict()
             state_dict['natoms'] = self.natoms
+            state_dict['nspecies'] = self.nspecies
+            state_dict['restore_atoms'] = self.restore_atoms
 
         if hasattr(self, 'twoD'):
             state_dict['twoD'] = self.twoD
@@ -321,6 +323,11 @@ class SQS:
             state_dict['n_minor'] = self.n_minor
             state_dict['corr_ref'] = self.corr_ref
             state_dict['converged'] = self.converged
+
+        if hasattr(self, 'atoms_other'):
+			state_dict['full_atoms'] = self.full_atoms.todict()
+	        state_dict['full_natoms'] = self.full_natoms
+	        state_dict['atoms_other'] = self.atoms_other.todict()
 
         if hasattr(self, 'sqs_atoms'):
             state_dict['sqs_atoms'] = self.sqs_atoms.todict()
@@ -356,7 +363,14 @@ class SQS:
         if 'atoms' in state_dict:
             self.atoms = Atoms.fromdict(state_dict['atoms'])
             self.natoms = state_dict['natoms']
-            
+            self.nspecies = state_dict['nspecies']
+            self.restore_atoms = state_dict['restore_atoms']
+        
+        if 'atoms_other' in state_dict:
+            self.full_atoms = Atoms.fromdict(state_dict['full_atoms'])
+            self.full_natoms = state_dict['full_natoms']
+            self.atoms_other = Atoms.fromdict(state_dict['atoms_other'])
+        
         if 'twoD' in state_dict:
             self.twoD = state_dict['twoD']
             self.n_trans = state_dict['n_trans']
