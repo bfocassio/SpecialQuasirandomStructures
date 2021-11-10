@@ -1,10 +1,12 @@
 import numpy as np
 import random
+
 from ase.io import read
-import ase
 from ase import Atoms
+
 from time import time
 import json
+
 import warnings
 
 class SQS:
