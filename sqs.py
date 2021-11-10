@@ -325,9 +325,9 @@ class SQS:
             state_dict['converged'] = self.converged
 
         if hasattr(self, 'atoms_other'):
-			state_dict['full_atoms'] = self.full_atoms.todict()
-	        state_dict['full_natoms'] = self.full_natoms
-	        state_dict['atoms_other'] = self.atoms_other.todict()
+            state_dict['full_atoms'] = self.full_atoms.todict()
+            state_dict['full_natoms'] = self.full_natoms
+            state_dict['atoms_other'] = self.atoms_other.todict()
 
         if hasattr(self, 'sqs_atoms'):
             state_dict['sqs_atoms'] = self.sqs_atoms.todict()
